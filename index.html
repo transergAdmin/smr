@@ -35,7 +35,11 @@
 
     /* ── RESET ──────────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      max-width: 100%;
+    }
     body {
       font-family: 'Poppins', sans-serif;
       color: var(--navy);
@@ -43,12 +47,14 @@
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      max-width: 100%;
+      width: 100%;
     }
     img { display: block; max-width: 100%; height: auto; }
     a { text-decoration: none; color: inherit; }
 
     /* ── LAYOUT ─────────────────────────────────────────── */
-    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 24px; width: 100%; }
     .section { padding: 96px 0; }
     .section--alt { background: var(--teal-50); }
     .section--dark { background: var(--navy); }
@@ -244,6 +250,7 @@
       display: flex;
       align-items: center;
       padding: 120px 24px 80px;
+      overflow: hidden;
     }
     .hero-bg {
       position: absolute;
@@ -353,10 +360,10 @@
       display: flex;
       align-items: center;
       gap: 9px;
-      padding: 16px 28px;
+      padding: 16px 20px;
       border-right: 1px solid rgba(255,255,255,.15);
       flex: 1;
-      min-width: 180px;
+      min-width: 0;
       white-space: nowrap;
     }
     .trust-item:last-child { border-right: none; }
@@ -368,7 +375,7 @@
       letter-spacing: .02em;
     }
     @media (max-width: 720px) {
-      .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.12); flex: none; width: 50%; }
+      .trust-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.12); flex: none; width: 50%; white-space: normal; }
     }
     @media (max-width: 440px) {
       .trust-item { width: 100%; }
@@ -625,8 +632,11 @@
         -webkit-overflow-scrolling: touch;
         gap: 14px;
         padding-bottom: 12px;
+        width: 100%;
+        scrollbar-width: none;
       }
-      .review-card { min-width: 292px; scroll-snap-align: start; }
+      .reviews-grid::-webkit-scrollbar { display: none; }
+      .review-card { min-width: 272px; flex-shrink: 0; scroll-snap-align: start; }
     }
 
     /* ── WHY US ─────────────────────────────────────────── */
@@ -1167,7 +1177,7 @@
 
 
 <!-- ══ REVIEWS ════════════════════════════════════════════ -->
-<section class="section section--alt" id="reviews">
+<section class="section section--alt" id="reviews" style="overflow-x:clip;">
   <div class="container">
     <div class="text-center">
       <div class="section-label">Testimonials</div>
